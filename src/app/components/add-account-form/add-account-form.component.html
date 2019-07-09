@@ -1,2 +1,26 @@
 <app-nav-bar></app-nav-bar>
-<p>add-account-form works!</p>
+<div class="form-container">
+  <mat-card>
+    <h2 class="mat-display-1">Add new account</h2>
+    <mat-form-field>
+      <input matInput placeholder="Number" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Balance" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Currency">
+        <mat-option value="option">US</mat-option>
+      </mat-select>
+      <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Owner" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary">Submit</button>
+  </mat-card>
+</div>

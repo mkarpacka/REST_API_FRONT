@@ -18,4 +18,8 @@ export class AccountComponent implements OnInit {
       this.accounts = data;
     });
   }
+
+  onRowClick() {
+    console.log("row clicked");
+  }
 }

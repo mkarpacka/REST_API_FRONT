@@ -12,10 +12,15 @@ import {
   MatIconModule,
   MatTableModule
 } from "@angular/material";
+import { MatInputModule } from "@angular/material/input";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { AddAccountFormComponent } from "./components/add-account-form/add-account-form.component";
 import { MakeTransferComponent } from "./components/make-transfer/make-transfer.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatSelectModule } from "@angular/material/select";
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -33,7 +38,12 @@ import { MakeTransferComponent } from "./components/make-transfer/make-transfer.
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatCardModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]
