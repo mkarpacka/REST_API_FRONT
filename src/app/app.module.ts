@@ -14,9 +14,17 @@ import {
 } from "@angular/material";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
+import { AddAccountFormComponent } from "./components/add-account-form/add-account-form.component";
+import { MakeTransferComponent } from "./components/make-transfer/make-transfer.component";
 
 @NgModule({
-  declarations: [AppComponent, AccountComponent, NavBarComponent],
+  declarations: [
+    AppComponent,
+    AccountComponent,
+    NavBarComponent,
+    AddAccountFormComponent,
+    MakeTransferComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
