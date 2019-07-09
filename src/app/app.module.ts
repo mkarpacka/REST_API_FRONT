@@ -18,9 +18,14 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { AddAccountFormComponent } from "./components/add-account-form/add-account-form.component";
 import { MakeTransferComponent } from "./components/make-transfer/make-transfer.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule
+} from "@angular/platform-browser/animations";
 import { MatSelectModule } from "@angular/material/select";
 import { MatCardModule } from "@angular/material/card";
+import { TransferListComponent } from "./components/transfer-list/transfer-list.component";
+import { AccountDetailsComponent } from "./components/account-details/account-details.component";
 
 @NgModule({
   declarations: [
@@ -28,7 +33,9 @@ import { MatCardModule } from "@angular/material/card";
     AccountComponent,
     NavBarComponent,
     AddAccountFormComponent,
-    MakeTransferComponent
+    MakeTransferComponent,
+    TransferListComponent,
+    AccountDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +50,8 @@ import { MatCardModule } from "@angular/material/card";
     MatInputModule,
     BrowserAnimationsModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    NoopAnimationsModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]

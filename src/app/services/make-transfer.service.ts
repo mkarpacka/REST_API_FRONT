@@ -2,11 +2,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Account } from "../models/account";
 import { Observable } from "rxjs";
+import { Transfer } from "../models/transfer";
 
 @Injectable({
   providedIn: "root"
 })
-export class AccountService {
+export class MakeTransferService {
   private headersObject: HttpHeaders;
 
   prepareHeader() {
@@ -17,17 +18,12 @@ export class AccountService {
       "Basic " + btoa("user:password")
     );
   }
-
   constructor(private http: HttpClient) {}
 
-  public findAll(): Observable<Account[]> {
+  public findAll(): Observable<Transfer[]> {
     this.prepareHeader();
-    return this.http.get<Account[]>("/api/accounts", {
+    return this.http.get<Transfer[]>("/api/accounts/transfers", {
       headers: this.headersObject
     });
   }
-
-  // public save(user: Account) {
-  //   return this.http.post<Account>(this.accountsUrl, user);
-  // }
 }
