@@ -1,26 +1,49 @@
 <app-nav-bar></app-nav-bar>
 <div class="form-container">
   <mat-card>
-    <h2 class="mat-display-1">Add new account</h2>
-    <mat-form-field>
-      <input matInput placeholder="Number" />
-    </mat-form-field>
+    <form [formGroup]="accountForm">
+      <h2 class="mat-display-1">Add new account</h2>
+      <mat-form-field class="form-group">
+        <input
+          matInput
+          placeholder="Number"
+          class="form-control"
+          id="number"
+          formControlName="number"
+        />
+      </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="Balance" />
-    </mat-form-field>
+      <mat-form-field class="form-group">
+        <input
+          matInput
+          placeholder="Balance"
+          class="form-control"
+          id="money"
+          formControlName="money"
+        />
+      </mat-form-field>
 
-    <mat-form-field>
-      <mat-select placeholder="Currency">
-        <mat-option value="option">US</mat-option>
-      </mat-select>
-      <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
-    </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Currency" formControlName="currency">
+          <mat-option value="USD">USD</mat-option>
+          <mat-option value="PLN">PLN</mat-option>
+          <mat-option value="GPB">GPB</mat-option>
+          <mat-option value="EUR">EUR</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="Owner" />
-    </mat-form-field>
-
-    <button mat-raised-button color="primary">Submit</button>
+      <mat-form-field class="form-group">
+        <input
+          matInput
+          placeholder="Owner"
+          class="form-control"
+          id="owner"
+          formControlName="owner"
+        />
+      </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      Submit
+    </button>
   </mat-card>
 </div>

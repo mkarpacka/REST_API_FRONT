@@ -37,7 +37,13 @@ export class AccountService {
     });
   }
 
-  // public save(user: Account) {
-  //   return this.http.post<Account>(this.accountsUrl, user);
-  // }
+  public saveAccount(account: Account) {
+    this.prepareHeader();
+    const completePath = this.path + "/add";
+    return this.http
+      .post<Account>(completePath, account, {
+        headers: this.headersObject
+      })
+      .subscribe(data => data);
+  }
 }

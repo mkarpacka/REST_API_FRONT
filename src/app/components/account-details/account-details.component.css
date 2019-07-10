@@ -4,3 +4,18 @@ table {
   margin-left: auto;
   margin-right: auto;
 }
+
+.mat-card {
+  width: 40%;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-h2 {
+  margin-left: 5%;
+  margin-right: 5%;
+  display: table-row;
+}

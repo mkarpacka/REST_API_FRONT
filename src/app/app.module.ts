@@ -26,6 +26,8 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatCardModule } from "@angular/material/card";
 import { TransferListComponent } from "./components/transfer-list/transfer-list.component";
 import { AccountDetailsComponent } from "./components/account-details/account-details.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MakeTransferService } from "./services/make-transfer.service";
 
 @NgModule({
   declarations: [
@@ -51,9 +53,11 @@ import { AccountDetailsComponent } from "./components/account-details/account-de
     BrowserAnimationsModule,
     MatSelectModule,
     MatCardModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [AccountService],
+  providers: [AccountService, MakeTransferService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,9 +1,12 @@
 <app-nav-bar></app-nav-bar>
-<div *ngIf="account">
-  <p>id: {{ account.id }}</p>
-  <p>owner: {{ account.owner }}</p>
-  <p>balance: {{ account.money }}</p>
-</div>
+
+<mat-card>
+  <div *ngIf="account" class="acount-details">
+    <div class="mat-h2">{{ account.number }}</div>
+    <div class="mat-h2">{{ account.owner }}</div>
+    <div class="mat-h2">{{ account.money }} {{ account.currency }}</div>
+  </div>
+</mat-card>
 
 <div class="table-container">
   <table mat-table [dataSource]="transfers" class="mat-elevation-z8">
