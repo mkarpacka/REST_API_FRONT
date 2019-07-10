@@ -9,7 +9,7 @@ import { stringify } from "@angular/compiler/src/util";
 })
 export class AccountService {
   private headersObject: HttpHeaders;
-  path = "/api/accounts/";
+  path = "/api";
 
   prepareHeader() {
     this.headersObject = new HttpHeaders();
@@ -18,20 +18,26 @@ export class AccountService {
       "Authorization",
       "Basic " + btoa("user:password")
     );
+    this.headersObject.append("Access-Control-Allow-Origin", "*");
+    this.headersObject.append(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
   }
 
   constructor(private http: HttpClient) {}
 
   public findAll(): Observable<Account[]> {
     this.prepareHeader();
-    return this.http.get<Account[]>(this.path, {
+    const completePath = this.path + "/accounts";
+    return this.http.get<Account[]>(completePath, {
       headers: this.headersObject
     });
   }
 
   public getAccount(accountNumber: number): Observable<Account> {
     this.prepareHeader();
-    const completePath = this.path + "/get-account/" + accountNumber;
+    const completePath = this.path + "/accounts/get-account/" + accountNumber;
     return this.http.get<Account>(completePath, {
       headers: this.headersObject
     });
@@ -39,11 +45,11 @@ export class AccountService {
 
   public saveAccount(account: Account) {
     this.prepareHeader();
-    const completePath = this.path + "/add";
+    const completePath = this.path + "/accounts/add";
     return this.http
-      .post<Account>(completePath, account, {
+      .post<Account>("/api/accounts/add", account, {
         headers: this.headersObject
       })
-      .subscribe(data => data);
+      .subscribe();
   }
 }

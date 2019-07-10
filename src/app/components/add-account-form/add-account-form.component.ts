@@ -16,7 +16,6 @@ import { Currency } from "src/app/models/currency";
   styleUrls: ["./add-account-form.component.css"]
 })
 export class AddAccountFormComponent implements OnInit {
-  accountToSave: Account;
   accountForm: FormGroup;
   selectedCurrency: Currency;
 
@@ -25,20 +24,15 @@ export class AddAccountFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private router: Router
-  ) {}
-
-  get f() {
-    return this.accountForm.controls;
-  }
-
-  ngOnInit() {
+  ) {
     this.accountForm = this.formBuilder.group({
       number: [
         "",
         [
           Validators.required,
           Validators.minLength(26),
-          Validators.maxLength(26)
+          Validators.maxLength(26),
+          Validators.pattern("^[0-9]*$")
         ]
       ],
       money: ["", [Validators.required]],
@@ -47,18 +41,35 @@ export class AddAccountFormComponent implements OnInit {
     });
   }
 
+  get f() {
+    return this.accountForm.controls;
+  }
+
+  ngOnInit() {}
+
   onSubmit() {
-    const accountToSave = new Account();
+    if (this.accountForm.invalid) {
+      return;
+    }
+
+    let accountToSave = new Account();
     accountToSave.number = this.accountForm.value.number;
     accountToSave.money = this.accountForm.value.money;
     accountToSave.currency = this.accountForm.value.currency;
     accountToSave.owner = this.accountForm.value.owner;
 
     console.log(accountToSave.currency);
-    // accountService.saveAccount(this.accountToSave);
+    this.accountService.saveAccount(accountToSave);
 
-    // setTimeout(() => {
-    //   this.router.navigate(["/accounts/"]);
-    // }, 1000);
+    setTimeout(() => {
+      this.router.navigate(["/accounts"]);
+    }, 1000);
+  }
+  getErrorMessage() {
+    return this.f.number.hasError("required")
+      ? "Wprowadź wartość"
+      : this.f.number.hasError("email")
+      ? "Wprowadź poprawny adres email"
+      : "";
   }
 }
