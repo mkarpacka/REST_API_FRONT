@@ -1,2 +1,38 @@
 <app-nav-bar></app-nav-bar>
-<p>make-transfer works!</p>
+<div class="form-container">
+  <mat-card>
+    <form [formGroup]="transferForm">
+      <h2 class="mat-display-1">Transfer money</h2>
+      <mat-form-field class="form-group">
+        <input
+          matInput
+          placeholder="First account number"
+          class="form-control"
+          id="firstNumber"
+          formControlName="firstNumber"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-group">
+        <input
+          matInput
+          placeholder="Second account number"
+          class="form-control"
+          id="secondNumber"
+          formControlName="secondNumber"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-group">
+        <input
+          matInput
+          placeholder="Money"
+          class="form-control"
+          id="money"
+          formControlName="money"
+        />
+      </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      Submit
+    </button>
+  </mat-card>
+</div>

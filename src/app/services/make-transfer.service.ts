@@ -37,4 +37,22 @@ export class MakeTransferService {
       headers: this.headersObject
     });
   }
+
+  public transferMoney(
+    firstAccountNumber: string,
+    secondAccountNumber: string,
+    money: number
+  ): Observable<Transfer[]> {
+    const completePath =
+      "/api/accounts/transfer/" +
+      firstAccountNumber +
+      "/" +
+      secondAccountNumber +
+      "/" +
+      money;
+    console.log(completePath);
+    return this.http.put<Transfer[]>(completePath, {
+      headers: this.headersObject
+    });
+  }
 }

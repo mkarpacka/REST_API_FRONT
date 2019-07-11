@@ -4,7 +4,7 @@ import { Transferstatus } from "./transferstatus.enum";
 export class Transfer {
   id: number;
   firstAccountNumber: string;
-  secondAccountNumber: number;
+  secondAccountNumber: string;
   money: number;
   currency: Currency;
   transferStatus: Transferstatus;
