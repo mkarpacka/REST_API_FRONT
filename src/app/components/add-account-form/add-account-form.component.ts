@@ -52,7 +52,7 @@ export class AddAccountFormComponent implements OnInit {
       return;
     }
 
-    let accountToSave = new Account();
+    const accountToSave = new Account();
     accountToSave.number = this.accountForm.value.number;
     accountToSave.money = this.accountForm.value.money;
     accountToSave.currency = this.accountForm.value.currency;

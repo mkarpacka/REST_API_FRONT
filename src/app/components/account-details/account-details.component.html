@@ -8,8 +8,26 @@
   </div>
 </mat-card>
 
+<div *ngIf="account" class="edit-buttons">
+  <button
+    mat-raised-button
+    color="primary"
+    routerLink="/account/edit/{{ account.number }}"
+  >
+    Edit account
+  </button>
+  <button mat-raised-button color="warn" (click)="deleteAccount()">
+    Delete account
+  </button>
+</div>
+
 <div class="table-container">
-  <table mat-table [dataSource]="transfers" class="mat-elevation-z8">
+  <table
+    mat-table
+    [dataSource]="transfers"
+    *ngIf="transfers"
+    class="mat-elevation-z8"
+  >
     <ng-container matColumnDef="From account">
       <th mat-header-cell *matHeaderCellDef>From account</th>
       <td mat-cell *matCellDef="let element">

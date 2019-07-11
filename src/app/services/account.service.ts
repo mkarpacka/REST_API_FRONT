@@ -35,7 +35,7 @@ export class AccountService {
     });
   }
 
-  public getAccount(accountNumber: number): Observable<Account> {
+  public getAccount(accountNumber: string): Observable<Account> {
     this.prepareHeader();
     const completePath = this.path + "/accounts/get-account/" + accountNumber;
     return this.http.get<Account>(completePath, {
@@ -47,7 +47,27 @@ export class AccountService {
     this.prepareHeader();
     const completePath = this.path + "/accounts/add";
     return this.http
-      .post<Account>("/api/accounts/add", account, {
+      .post<Account>(completePath, account, {
+        headers: this.headersObject
+      })
+      .subscribe();
+  }
+
+  public updateAccount(accountNumber: number, account: Account) {
+    this.prepareHeader();
+
+    return this.http
+      .put("/api/accounts/update/" + accountNumber, account, {
+        headers: this.headersObject
+      })
+      .subscribe();
+  }
+
+  public deletAccount(accountNumber: number) {
+    this.prepareHeader();
+    const completePath = this.path + "/accounts/delete/" + accountNumber;
+    return this.http
+      .delete<Account>(completePath, {
         headers: this.headersObject
       })
       .subscribe();

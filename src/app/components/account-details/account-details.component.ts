@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Account } from "src/app/models/account";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AccountService } from "src/app/services/account.service";
 import { MakeTransferService } from "src/app/services/make-transfer.service";
 import { Transfer } from "src/app/models/transfer";
@@ -26,7 +26,8 @@ export class AccountDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private accountService: AccountService,
-    private transferService: MakeTransferService
+    private transferService: MakeTransferService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -35,11 +36,10 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   getAccount() {
-    const id = +this.route.snapshot.paramMap.get("id");
+    const id = this.route.snapshot.paramMap.get("id");
     this.accountService
       .getAccount(id)
       .subscribe(account => (this.account = account));
-    console.log("account: " + this.accountService.getAccount(id));
   }
 
   getTransfers() {
@@ -49,9 +49,18 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   getAllTransfers() {
-    const number = +this.route.snapshot.paramMap.get("id");
+    const number = this.route.snapshot.paramMap.get("id");
     this.transferService.getAccountTransfers(number).subscribe(data => {
       this.transfers = data;
     });
+  }
+
+  deleteAccount() {
+    const number = +this.route.snapshot.paramMap.get("id");
+    this.accountService.deletAccount(number);
+
+    setTimeout(() => {
+      this.router.navigate(["/accounts"]);
+    }, 1000);
   }
 }

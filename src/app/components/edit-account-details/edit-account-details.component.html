@@ -1,0 +1,34 @@
+<app-nav-bar></app-nav-bar>
+<div *ngIf="account">
+  <mat-card>
+    <div class="acount-details">
+      <div class="mat-h2">{{ account.number }}</div>
+      <div class="mat-h2">{{ account.owner }}</div>
+      <div class="mat-h2">{{ account.money }} {{ account.currency }}</div>
+    </div>
+  </mat-card>
+
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Owner"
+      value="{{ account.owner }}"
+      name="newOwner"
+      [(ngModel)]="newOwner"
+    />
+  </mat-form-field>
+
+  <div *ngIf="account" class="edit-buttons">
+    <button mat-raised-button routerLink="/account/{{ account.number }}">
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      color="primary"
+      (click)="updateAccount()"
+    >
+      Submit
+    </button>
+  </div>
+</div>

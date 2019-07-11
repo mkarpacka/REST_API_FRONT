@@ -31,7 +31,7 @@ export class MakeTransferService {
     });
   }
 
-  public getAccountTransfers(accountNumber: number): Observable<Transfer[]> {
+  public getAccountTransfers(accountNumber: string): Observable<Transfer[]> {
     const completePath = this.path + accountNumber;
     return this.http.get<Transfer[]>(completePath, {
       headers: this.headersObject

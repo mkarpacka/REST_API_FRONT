@@ -28,6 +28,7 @@ import { TransferListComponent } from "./components/transfer-list/transfer-list.
 import { AccountDetailsComponent } from "./components/account-details/account-details.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MakeTransferService } from "./services/make-transfer.service";
+import { EditAccountDetailsComponent } from "./components/edit-account-details/edit-account-details.component";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MakeTransferService } from "./services/make-transfer.service";
     AddAccountFormComponent,
     MakeTransferComponent,
     TransferListComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    EditAccountDetailsComponent
   ],
   imports: [
     BrowserModule,
