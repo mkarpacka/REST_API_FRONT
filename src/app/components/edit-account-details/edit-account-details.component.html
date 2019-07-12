@@ -8,13 +8,14 @@
     </div>
   </mat-card>
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="input-class">
     <input
       matInput
       placeholder="Owner"
       value="{{ account.owner }}"
       name="newOwner"
       [(ngModel)]="newOwner"
+      required
     />
   </mat-form-field>
 

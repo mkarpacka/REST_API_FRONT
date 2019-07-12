@@ -29,6 +29,7 @@ import { AccountDetailsComponent } from "./components/account-details/account-de
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MakeTransferService } from "./services/make-transfer.service";
 import { EditAccountDetailsComponent } from "./components/edit-account-details/edit-account-details.component";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { EditAccountDetailsComponent } from "./components/edit-account-details/e
     MatCardModule,
     NoopAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [AccountService, MakeTransferService],
   bootstrap: [AppComponent]

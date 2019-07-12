@@ -25,9 +25,11 @@ export class EditAccountDetailsComponent implements OnInit {
 
   updateAccount() {
     const id = +this.route.snapshot.paramMap.get("id");
-    this.account.owner = this.newOwner;
-    console.log(id);
-    this.accountService.updateAccount(id, this.account);
+    if (this.newOwner != null) {
+      this.account.owner = this.newOwner;
+      console.log(id);
+      this.accountService.updateAccount(id, this.account);
+    }
   }
 
   getAccount() {

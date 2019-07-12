@@ -53,12 +53,10 @@ export class MakeTransferComponent implements OnInit {
       "" + this.transferForm.value.secondNumber;
     transferToMake.money = this.transferForm.value.money;
 
-    this.transferService
-      .transferMoney(
-        transferToMake.firstAccountNumber,
-        transferToMake.secondAccountNumber,
-        transferToMake.money
-      )
-      .subscribe();
+    this.transferService.transferMoney(
+      transferToMake.firstAccountNumber,
+      transferToMake.secondAccountNumber,
+      transferToMake.money
+    );
   }
 }

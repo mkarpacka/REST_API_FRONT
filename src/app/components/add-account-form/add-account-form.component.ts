@@ -9,6 +9,7 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Currency } from "src/app/models/currency";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-add-account-form",
@@ -23,7 +24,8 @@ export class AddAccountFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private accountService: AccountService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) {
     this.accountForm = this.formBuilder.group({
       number: [
@@ -49,6 +51,9 @@ export class AddAccountFormComponent implements OnInit {
 
   onSubmit() {
     if (this.accountForm.invalid) {
+      this.toastrService.error("everything is broken", "Major Error", {
+        timeOut: 3000
+      });
       return;
     }
 
@@ -64,12 +69,5 @@ export class AddAccountFormComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(["/accounts"]);
     }, 1000);
-  }
-  getErrorMessage() {
-    return this.f.number.hasError("required")
-      ? "Wprowadź wartość"
-      : this.f.number.hasError("email")
-      ? "Wprowadź poprawny adres email"
-      : "";
   }
 }
