@@ -1,6 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-
+import { NgModule, LOCALE_ID } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AccountComponent } from "./components/account/account.component";
@@ -30,7 +29,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MakeTransferService } from "./services/make-transfer.service";
 import { EditAccountDetailsComponent } from "./components/edit-account-details/edit-account-details.component";
 import { ToastrModule } from "ngx-toastr";
-
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { registerLocaleData } from "@angular/common";
+import localePl from "@angular/common/locales/pl";
+registerLocaleData(localePl);
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,9 +61,14 @@ import { ToastrModule } from "ngx-toastr";
     NoopAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatProgressSpinnerModule
   ],
-  providers: [AccountService, MakeTransferService],
+  providers: [
+    AccountService,
+    MakeTransferService,
+    { provide: LOCALE_ID, useValue: "pl-PL" }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

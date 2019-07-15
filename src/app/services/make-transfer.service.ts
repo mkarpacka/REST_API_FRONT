@@ -72,39 +72,42 @@ export class MakeTransferService {
     money: number
   ) {
     this.prepareHeader();
-
-    this.http
-      .put(
-        "api/accounts/transfer/" +
-          accountNumberFrom +
-          "/" +
-          accountNumberTo +
-          "/" +
-          money,
-        { headers: this.headersObject }
-      )
-      .toPromise()
-      .then((res: Response) => {
-        this.toastrService.success("Wykonano przelew");
-      })
-      .catch(error => {
-        if (
-          error instanceof HttpErrorResponse &&
-          (error.status === 404 || error.status === 409)
-        ) {
-          if (error.status === 404) {
-            this.toastrService.error(
-              "Nie znaleziono nr konta! Nie wykonano przelewu"
-            );
-          } else if (error.status === 409) {
-            this.toastrService.error(
-              "Za mało środków na koncie! Nie wykonano przelewu"
-            );
+    if (accountNumberFrom != accountNumberTo) {
+      this.http
+        .put(
+          "api/accounts/transfer/" +
+            accountNumberFrom +
+            "/" +
+            accountNumberTo +
+            "/" +
+            money,
+          { headers: this.headersObject }
+        )
+        .toPromise()
+        .then((res: Response) => {
+          this.toastrService.success("Wykonano przelew");
+        })
+        .catch(error => {
+          if (
+            error instanceof HttpErrorResponse &&
+            (error.status === 404 || error.status === 409)
+          ) {
+            if (error.status === 404) {
+              this.toastrService.error(
+                "Nie znaleziono nr konta! Nie wykonano przelewu"
+              );
+            } else if (error.status === 409) {
+              this.toastrService.error(
+                "Za mało środków na koncie! Nie wykonano przelewu"
+              );
+            }
           }
-        }
-      })
-      .catch((res: Response) => {
-        this.toastrService.success("Nieznany błąd! Nie wykonano przelewu");
-      });
+        })
+        .catch((res: Response) => {
+          this.toastrService.success("Nieznany błąd! Nie wykonano przelewu");
+        });
+    } else {
+      this.toastrService.error("Podano ten sam numer konta");
+    }
   }
 }

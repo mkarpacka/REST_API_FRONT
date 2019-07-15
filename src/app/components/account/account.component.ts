@@ -18,17 +18,28 @@ export class AccountComponent implements OnInit {
     "details"
   ];
   expandedElement: any;
+  isVisible: boolean;
 
-  constructor(private accountService: AccountService, private router: Router) {}
+  constructor(private accountService: AccountService, private router: Router) {
+    this.isVisible = false;
+  }
 
   ngOnInit() {
     this.accountService.findAll().subscribe(data => {
       this.accounts = data;
     });
+    this.startLoadingSpinner();
   }
 
   onRowClick(account) {
     console.log("row clicked " + account.owner);
     this.router.navigateByUrl("/alltransfers");
+  }
+
+  startLoadingSpinner() {
+    this.isVisible = true;
+    setTimeout(() => {
+      this.isVisible = false;
+    }, 2000);
   }
 }
