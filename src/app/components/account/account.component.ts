@@ -28,7 +28,7 @@ export class AccountComponent implements OnInit {
     this.accountService.findAll().subscribe(data => {
       this.accounts = data;
     });
-    this.startLoadingSpinner();
+    // this.startLoadingSpinner();
   }
 
   onRowClick(account) {
@@ -36,10 +36,10 @@ export class AccountComponent implements OnInit {
     this.router.navigateByUrl("/alltransfers");
   }
 
-  startLoadingSpinner() {
-    this.isVisible = true;
-    setTimeout(() => {
-      this.isVisible = false;
-    }, 2000);
-  }
+  // startLoadingSpinner() {
+  //   this.isVisible = true;
+  //   setTimeout(() => {
+  //     this.isVisible = false;
+  //   }, 2000);
+  // }
 }

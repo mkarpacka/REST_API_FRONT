@@ -30,8 +30,10 @@ import { MakeTransferService } from "./services/make-transfer.service";
 import { EditAccountDetailsComponent } from "./components/edit-account-details/edit-account-details.component";
 import { ToastrModule } from "ngx-toastr";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatDialogModule } from "@angular/material/dialog";
 import { registerLocaleData } from "@angular/common";
 import localePl from "@angular/common/locales/pl";
+import { CourseDialogComponentComponent } from "./components/course-dialog-component/course-dialog-component.component";
 registerLocaleData(localePl);
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ registerLocaleData(localePl);
     MakeTransferComponent,
     TransferListComponent,
     AccountDetailsComponent,
-    EditAccountDetailsComponent
+    EditAccountDetailsComponent,
+    CourseDialogComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -62,13 +65,15 @@ registerLocaleData(localePl);
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [
     AccountService,
     MakeTransferService,
     { provide: LOCALE_ID, useValue: "pl-PL" }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CourseDialogComponentComponent]
 })
 export class AppModule {}

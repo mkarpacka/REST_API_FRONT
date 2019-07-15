@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { MakeTransferService } from "src/app/services/make-transfer.service";
 import { ToastrModule, ToastrService } from "ngx-toastr";
+import { MatDialog, MatDialogConfig } from "@angular/material";
+import { CourseDialogComponentComponent } from "../course-dialog-component/course-dialog-component.component";
 
 @Component({
   selector: "app-make-transfer",
@@ -21,7 +23,8 @@ export class MakeTransferComponent implements OnInit {
     private accountService: AccountService,
     private transferService: MakeTransferService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dialog: MatDialog
   ) {
     this.transferForm = this.formBuilder.group({
       firstNumber: [
@@ -46,15 +49,39 @@ export class MakeTransferComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
-  onSubmit() {
+  openDialog() {
     if (this.transferForm.invalid) {
-      this.toastr.error("everything is broken", "Major Error", {
+      this.toastr.error("Input is invalid", "Error", {
         timeOut: 3000
       });
       return;
     }
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      firstAccountNumber: this.transferForm.value.firstNumber,
+      secondAccountNumber: this.transferForm.value.secondNumber,
+      money: this.transferForm.value.money
+    };
+
+    const dialogRef = this.dialog.open(
+      CourseDialogComponentComponent,
+      dialogConfig
+    );
+
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.onSubmit();
+      }
+    });
+  }
+
+  ngOnInit() {}
+
+  onSubmit() {
     const transferToMake = new Transfer();
     transferToMake.firstAccountNumber = this.transferForm.value.firstNumber;
     transferToMake.secondAccountNumber =
