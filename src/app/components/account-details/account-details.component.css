@@ -34,3 +34,8 @@ table {
 .mat-raised-button {
   margin: 2px;
 }
+
+.mat-display-1 {
+  text-align: center;
+  margin-top: 5%;
+}

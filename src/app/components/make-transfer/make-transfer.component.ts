@@ -45,7 +45,10 @@ export class MakeTransferComponent implements OnInit {
           Validators.pattern("^[0-9]*$")
         ]
       ],
-      money: ["", [Validators.required, Validators.pattern("^[0-9.]*$")]]
+      money: [
+        "",
+        [Validators.required, Validators.pattern("^[0-9]*([.][0-9]{1,2})?$")]
+      ]
     });
   }
 

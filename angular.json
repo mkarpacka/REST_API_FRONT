@@ -19,7 +19,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/assets", "src/bank_icon.png"],
             "styles": ["src/styles.css", "node_modules/ngx-toastr/toastr.css"],
             "scripts": []
           },

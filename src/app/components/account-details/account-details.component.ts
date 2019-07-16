@@ -13,6 +13,7 @@ import { Transfer } from "src/app/models/transfer";
 export class AccountDetailsComponent implements OnInit {
   account: Account;
   transfers: Transfer[];
+  condition: boolean;
   displayedColumns: string[] = [
     "From account",
     "To account",
@@ -31,6 +32,7 @@ export class AccountDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.condition = false;
     this.getAccount();
     this.getAllTransfers();
   }
@@ -52,6 +54,12 @@ export class AccountDetailsComponent implements OnInit {
     const number = this.route.snapshot.paramMap.get("id");
     this.transferService.getAccountTransfers(number).subscribe(data => {
       this.transfers = data;
+      if (this.transfers.length <= 0) {
+        this.condition = false;
+      } else {
+        this.condition = true;
+      }
+      console.log(this.condition);
     });
   }
 

@@ -5,10 +5,12 @@ import {
   HttpErrorResponse
 } from "@angular/common/http";
 import { Account } from "../models/account";
-import { Observable } from "rxjs";
 import { stringify } from "@angular/compiler/src/util";
 import { Route, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { Observable } from "rxjs";
+import { EMPTY, throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -48,19 +50,32 @@ export class AccountService {
   public getAccount(accountNumber: string): Observable<Account> {
     this.prepareHeader();
     const completePath = this.path + "/accounts/get-account/" + accountNumber;
-    return this.http.get<Account>(completePath, {
-      headers: this.headersObject
-    });
+    return this.http
+      .get<Account>(completePath, {
+        headers: this.headersObject
+      })
+      .pipe(
+        catchError(err => {
+          if (err.status === 404) {
+            return throwError(err);
+          }
+        })
+      );
   }
 
   public saveAccount(account: Account) {
     this.prepareHeader();
     const completePath = this.path + "/accounts/add";
-    return this.http
-      .post<Account>(completePath, account, {
-        headers: this.headersObject
-      })
-      .subscribe();
+    try {
+      return this.http
+        .post<Account>(completePath, account, {
+          headers: this.headersObject
+        })
+        .subscribe();
+    } catch (e) {
+      console.log("error", e);
+      throw e;
+    }
   }
 
   public updateAccount(accountNumber: number, account: Account) {

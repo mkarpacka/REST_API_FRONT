@@ -85,7 +85,7 @@ export class MakeTransferService {
         )
         .toPromise()
         .then((res: Response) => {
-          this.toastrService.success("Wykonano przelew");
+          this.toastrService.success("Transfer has been made.");
         })
         .catch(error => {
           if (
@@ -94,20 +94,20 @@ export class MakeTransferService {
           ) {
             if (error.status === 404) {
               this.toastrService.error(
-                "Nie znaleziono nr konta! Nie wykonano przelewu"
+                "Account number not found! Transfer has not been made."
               );
             } else if (error.status === 409) {
               this.toastrService.error(
-                "Za mało środków na koncie! Nie wykonano przelewu"
+                "Not enough money! Transfer has not been made."
               );
             }
           }
         })
         .catch((res: Response) => {
-          this.toastrService.success("Nieznany błąd! Nie wykonano przelewu");
+          this.toastrService.success("Error! Transfer has not been made.");
         });
     } else {
-      this.toastrService.error("Podano ten sam numer konta");
+      this.toastrService.error("Account numbers are the same");
     }
   }
 }
