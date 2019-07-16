@@ -10,8 +10,8 @@
           class="form-control"
           id="number"
           formControlName="number"
+          (keyup)="findInvalidControls()"
         />
-        <!-- <mat-error *ngIf="accountForm.controls">{{ getErrorMessage() }}</mat-error> -->
       </mat-form-field>
 
       <mat-form-field class="form-group">
@@ -21,11 +21,16 @@
           class="form-control"
           id="money"
           formControlName="money"
+          (keyup)="findInvalidControls()"
         />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Currency" formControlName="currency">
+        <mat-select
+          placeholder="Currency"
+          formControlName="currency"
+          (selectionChange)="findInvalidControls()"
+        >
           <mat-option value="USD">USD</mat-option>
           <mat-option value="PLN">PLN</mat-option>
           <mat-option value="GBP">GBP</mat-option>
@@ -40,11 +45,16 @@
           class="form-control"
           id="owner"
           formControlName="owner"
+          (keyup)="findInvalidControls()"
         />
       </mat-form-field>
     </form>
     <button mat-raised-button color="primary" (click)="onSubmit()">
       Submit
     </button>
+    <mat-progress-bar
+      mode="determinate"
+      [value]="progressValue"
+    ></mat-progress-bar>
   </mat-card>
 </div>

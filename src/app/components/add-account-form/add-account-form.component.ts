@@ -19,7 +19,7 @@ import { ToastrService } from "ngx-toastr";
 export class AddAccountFormComponent implements OnInit {
   accountForm: FormGroup;
   selectedCurrency: Currency;
-
+  progressValue;
   roles: Currency[];
   constructor(
     private formBuilder: FormBuilder,
@@ -43,11 +43,9 @@ export class AddAccountFormComponent implements OnInit {
     });
   }
 
-  get f() {
-    return this.accountForm.controls;
+  ngOnInit() {
+    this.progressValue = 0;
   }
-
-  ngOnInit() {}
 
   onSubmit() {
     if (this.accountForm.invalid) {
@@ -69,5 +67,15 @@ export class AddAccountFormComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(["/accounts"]);
     }, 1000);
+  }
+  public findInvalidControls() {
+    let validControlsCounter = 0;
+    const controls = this.accountForm.controls;
+    for (const name in controls) {
+      if (controls[name].valid) {
+        validControlsCounter++;
+      }
+    }
+    this.progressValue = (validControlsCounter / 4) * 100;
   }
 }
