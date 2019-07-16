@@ -48,23 +48,23 @@ export class MakeTransferService {
     });
   }
 
-  // public transferMoney(
-  //   firstAccountNumber: string,
-  //   secondAccountNumber: string,
-  //   money: number
-  // ): Observable<Transfer[]> {
-  //   const completePath =
-  //     "/api/accounts/transfer/" +
-  //     firstAccountNumber +
-  //     "/" +
-  //     secondAccountNumber +
-  //     "/" +
-  //     money;
-  //   console.log(completePath);
-  //   return this.http.put<Transfer[]>(completePath, {
-  //     headers: this.headersObject
-  //   });
-  // }
+  public getOutgoingAccountTransfers(
+    accountNumber: string
+  ): Observable<Transfer[]> {
+    const completePath = this.path + "outgoing/" + accountNumber;
+    return this.http.get<Transfer[]>(completePath, {
+      headers: this.headersObject
+    });
+  }
+
+  public getIncomingAccountTransfers(
+    accountNumber: string
+  ): Observable<Transfer[]> {
+    const completePath = this.path + "incoming/" + accountNumber;
+    return this.http.get<Transfer[]>(completePath, {
+      headers: this.headersObject
+    });
+  }
 
   public transferMoney(
     accountNumberFrom: string,

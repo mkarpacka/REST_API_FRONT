@@ -27,55 +27,188 @@
 </ng-template>
 
 <div class="table-container" *ngIf="this.condition; else elseBlock">
-  <table mat-table [dataSource]="transfers" class="mat-elevation-z8">
-    <ng-container matColumnDef="From account">
-      <th mat-header-cell *matHeaderCellDef>From account</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.firstAccountNumber }}
-      </td>
-    </ng-container>
+  <mat-tab-group>
+    <mat-tab label="All transfers">
+      <table mat-table [dataSource]="transfers" class="mat-elevation-z8">
+        <ng-container matColumnDef="From account">
+          <th mat-header-cell *matHeaderCellDef>From account</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.firstAccountNumber }}
+          </td>
+        </ng-container>
 
-    <ng-container matColumnDef="To account">
-      <th mat-header-cell *matHeaderCellDef>To account</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.secondAccountNumber }}
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="To account">
+          <th mat-header-cell *matHeaderCellDef>To account</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.secondAccountNumber }}
+          </td>
+        </ng-container>
 
-    <ng-container matColumnDef="balance">
-      <th mat-header-cell *matHeaderCellDef>Balance</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.money | number: "":"pl-PL" }}
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="balance">
+          <th mat-header-cell *matHeaderCellDef>Balance</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.money | number: "":"pl-PL" }}
+          </td>
+        </ng-container>
 
-    <ng-container matColumnDef="currency">
-      <th mat-header-cell *matHeaderCellDef>Currency</th>
-      <td mat-cell *matCellDef="let element">{{ element.currency }}</td>
-    </ng-container>
+        <ng-container matColumnDef="currency">
+          <th mat-header-cell *matHeaderCellDef>Currency</th>
+          <td mat-cell *matCellDef="let element">{{ element.currency }}</td>
+        </ng-container>
 
-    <ng-container matColumnDef="transferStartedDate">
-      <th mat-header-cell *matHeaderCellDef>Transfer started</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.transferStartedDate | date: "dd/MM/yyyy HH:mm:ss" }}
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="transferStartedDate">
+          <th mat-header-cell *matHeaderCellDef>Transfer started</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.transferStartedDate | date: "dd/MM/yyyy HH:mm:ss" }}
+          </td>
+        </ng-container>
 
-    <ng-container matColumnDef="transferRecievedDate">
-      <th mat-header-cell *matHeaderCellDef>Transfer revieved</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.transferRecievedDate | date: "dd/MM/yyyy HH:mm:ss" }}
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="transferRecievedDate">
+          <th mat-header-cell *matHeaderCellDef>Transfer revieved</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.transferRecievedDate | date: "dd/MM/yyyy HH:mm:ss" }}
+          </td>
+        </ng-container>
 
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>Status</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.transferStatus }}
-      </td>
-    </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.transferStatus }}
+          </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr></table
+    ></mat-tab>
+
+    <!-- incomming transfers -->
+    <ng-template #emptyIncoming>
+      <h3 class="mat-display-1">
+        Incoming transfer list is empty.
+      </h3>
+    </ng-template>
+
+    <mat-tab label="Incoming transfers">
+      <table
+        mat-table
+        [dataSource]="incomingTransfers"
+        class="mat-elevation-z8"
+        *ngIf="this.incommingCondition; else emptyIncoming"
+      >
+        <ng-container matColumnDef="From account">
+          <th mat-header-cell *matHeaderCellDef>From account</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.firstAccountNumber }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="To account">
+          <th mat-header-cell *matHeaderCellDef>To account</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.secondAccountNumber }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="balance">
+          <th mat-header-cell *matHeaderCellDef>Balance</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.money | number: "":"pl-PL" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="currency">
+          <th mat-header-cell *matHeaderCellDef>Currency</th>
+          <td mat-cell *matCellDef="let element">{{ element.currency }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="transferStartedDate">
+          <th mat-header-cell *matHeaderCellDef>Transfer started</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.transferStartedDate | date: "dd/MM/yyyy HH:mm:ss" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="transferRecievedDate">
+          <th mat-header-cell *matHeaderCellDef>Transfer revieved</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.transferRecievedDate | date: "dd/MM/yyyy HH:mm:ss" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.transferStatus }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr></table
+    ></mat-tab>
+    <!-- outgoing transfers -->
+
+    <ng-template #emptyOutgoing>
+      <h3 class="mat-display-1">
+        Outgoing transfer list is empty.
+      </h3>
+    </ng-template>
+
+    <mat-tab label="Outgoing transfers">
+      <table
+        mat-table
+        [dataSource]="outgoingTransfers"
+        class="mat-elevation-z8"
+        *ngIf="this.outgoingCondition; else emptyOutgoing"
+      >
+        <ng-container matColumnDef="From account">
+          <th mat-header-cell *matHeaderCellDef>From account</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.firstAccountNumber }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="To account">
+          <th mat-header-cell *matHeaderCellDef>To account</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.secondAccountNumber }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="balance">
+          <th mat-header-cell *matHeaderCellDef>Balance</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.money | number: "":"pl-PL" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="currency">
+          <th mat-header-cell *matHeaderCellDef>Currency</th>
+          <td mat-cell *matCellDef="let element">{{ element.currency }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="transferStartedDate">
+          <th mat-header-cell *matHeaderCellDef>Transfer started</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.transferStartedDate | date: "dd/MM/yyyy HH:mm:ss" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="transferRecievedDate">
+          <th mat-header-cell *matHeaderCellDef>Transfer revieved</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.transferRecievedDate | date: "dd/MM/yyyy HH:mm:ss" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.transferStatus }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr></table
+    ></mat-tab>
+  </mat-tab-group>
 </div>

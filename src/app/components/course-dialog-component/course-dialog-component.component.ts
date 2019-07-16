@@ -57,7 +57,6 @@ export class CourseDialogComponentComponent implements OnInit {
       )
       .subscribe(account => {
         this.firstAccount = account;
-        console.log(" first " + this.firstAccount);
       });
 
     this.accountService
@@ -79,15 +78,7 @@ export class CourseDialogComponentComponent implements OnInit {
       )
       .subscribe(account => {
         this.secondAccount = account;
-        console.log(" second" + this.secondAccount);
       });
-
-    // if (this.firstAccount.owner == null || this.secondAccount.owner == null) {
-    //   // this.dialogRef.close();
-    //   this.toastr.error("Wrong account number", "Error", {
-    //     timeOut: 3000
-    //   });
-    // }
   }
 
   save() {

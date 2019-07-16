@@ -34,6 +34,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { registerLocaleData } from "@angular/common";
 import localePl from "@angular/common/locales/pl";
 import { CourseDialogComponentComponent } from "./components/course-dialog-component/course-dialog-component.component";
+import { MatTabsModule } from "@angular/material/tabs";
 registerLocaleData(localePl);
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ registerLocaleData(localePl);
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule
   ],
   providers: [
     AccountService,

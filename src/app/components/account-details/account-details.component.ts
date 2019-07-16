@@ -13,7 +13,11 @@ import { Transfer } from "src/app/models/transfer";
 export class AccountDetailsComponent implements OnInit {
   account: Account;
   transfers: Transfer[];
+  incomingTransfers: Transfer[];
+  outgoingTransfers: Transfer[];
   condition: boolean;
+  incommingCondition: boolean;
+  outgoingCondition: boolean;
   displayedColumns: string[] = [
     "From account",
     "To account",
@@ -35,6 +39,8 @@ export class AccountDetailsComponent implements OnInit {
     this.condition = false;
     this.getAccount();
     this.getAllTransfers();
+    this.getIncomingTransfers();
+    this.getOutgoingTransfers();
   }
 
   getAccount() {
@@ -50,6 +56,30 @@ export class AccountDetailsComponent implements OnInit {
     });
   }
 
+  getIncomingTransfers() {
+    const number = this.route.snapshot.paramMap.get("id");
+    this.transferService.getIncomingAccountTransfers(number).subscribe(data => {
+      this.incomingTransfers = data;
+      if (this.incomingTransfers.length <= 0) {
+        this.incommingCondition = false;
+      } else {
+        this.incommingCondition = true;
+      }
+    });
+  }
+
+  getOutgoingTransfers() {
+    const number = this.route.snapshot.paramMap.get("id");
+    this.transferService.getOutgoingAccountTransfers(number).subscribe(data => {
+      this.outgoingTransfers = data;
+      if (this.outgoingTransfers.length <= 0) {
+        this.outgoingCondition = false;
+      } else {
+        this.outgoingCondition = true;
+      }
+    });
+  }
+
   getAllTransfers() {
     const number = this.route.snapshot.paramMap.get("id");
     this.transferService.getAccountTransfers(number).subscribe(data => {
@@ -59,7 +89,6 @@ export class AccountDetailsComponent implements OnInit {
       } else {
         this.condition = true;
       }
-      console.log(this.condition);
     });
   }
 
