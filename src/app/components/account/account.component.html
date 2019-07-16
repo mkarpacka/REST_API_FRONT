@@ -1,4 +1,15 @@
 <app-nav-bar></app-nav-bar>
+<div class="input-container">
+  <mat-form-field>
+    <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Filter"
+      class="filter-input"
+    />
+  </mat-form-field>
+</div>
+
 <div class="table-container">
   <table mat-table [dataSource]="accounts" class="mat-elevation-z8">
     <ng-container matColumnDef="owner">

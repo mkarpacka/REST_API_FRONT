@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AccountService } from "src/app/services/account.service";
 import { Account } from "src/app/models/account";
 import { Router } from "@angular/router";
+import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
   selector: "app-account",
@@ -9,7 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./account.component.css"]
 })
 export class AccountComponent implements OnInit {
-  accounts: Account[];
+  accounts;
   displayedColumns: string[] = [
     "number",
     "balance",
@@ -26,9 +27,14 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
     this.accountService.findAll().subscribe(data => {
-      this.accounts = data;
+      this.accounts = new MatTableDataSource(data);
     });
+
     // this.startLoadingSpinner();
+  }
+
+  applyFilter(filterValue: string) {
+    this.accounts.filter = filterValue.trim().toLowerCase();
   }
 
   onRowClick(account) {

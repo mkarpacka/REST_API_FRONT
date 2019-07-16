@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AccountService } from "src/app/services/account.service";
 import { MakeTransferService } from "src/app/services/make-transfer.service";
 import { Transfer } from "src/app/models/transfer";
+import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
   selector: "app-account-details",
@@ -28,6 +29,8 @@ export class AccountDetailsComponent implements OnInit {
     "status"
   ];
 
+  dataSource = new MatTableDataSource(this.transfers);
+
   constructor(
     private route: ActivatedRoute,
     private accountService: AccountService,
@@ -41,6 +44,11 @@ export class AccountDetailsComponent implements OnInit {
     this.getAllTransfers();
     this.getIncomingTransfers();
     this.getOutgoingTransfers();
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    console.log("filter");
   }
 
   getAccount() {
