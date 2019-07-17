@@ -1,0 +1,234 @@
+body {
+  /* overflow: hidden; */
+  height: 100%;
+  font-family: Roboto, monospace;
+}
+
+.all-page {
+  display: block;
+}
+.content {
+  background-color: #3f51b5;
+  /* height: 65%; */
+  margin-top: -16px;
+  top: 0;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.content-bottom {
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 25px;
+  width: 100%;
+  height: 8em;
+  padding-top: 20px;
+}
+
+.footer {
+  overflow: hidden;
+  background-color: #e6e6e6;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 12em;
+  color: white;
+}
+
+.border-name {
+  background-color: #dc970b;
+  font-weight: 400;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bankapi {
+  font-weight: 800;
+  font-size: 24px;
+  color: #dc970b;
+}
+
+.motto {
+  font-weight: 50;
+  color: black;
+  font-family: "Courier New", Times, serif;
+}
+
+.copyright {
+  color: #dc970b;
+  font-weight: 100;
+  font-size: 10px;
+}
+
+.mat-display-1 {
+  font-weight: 1000;
+  color: white;
+}
+
+.mat-subheading-1 {
+  color: white;
+  text-align: right;
+}
+
+.main-title {
+  margin-top: 100px;
+  display: inline-block;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: 400px;
+  margin-left: 75px;
+  margin-top: -165px;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+.home-pic {
+  display: inline-block;
+}
+
+.mat-raised-button {
+  width: 250px;
+  height: 50px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* responsive one------------------------- */
+@media only screen and (max-width: 1000px) {
+  body {
+    overflow: hidden;
+    height: 100%;
+    font-family: Roboto, monospace;
+  }
+
+  .all-page {
+    display: block;
+  }
+  .content {
+    background-color: #3f51b5;
+    height: 65%;
+    margin-top: -16px;
+    top: 0;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .content-bottom {
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 25px;
+    width: 100%;
+    height: 10%;
+    padding-top: 65px;
+  }
+
+  .footer {
+    background-color: #e6e6e6;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    display: inline-block;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 25%;
+    color: white;
+  }
+
+  .border-name {
+    background-color: #dc970b;
+    font-weight: 400;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .bankapi {
+    font-weight: 800;
+    font-size: 24px;
+    color: #dc970b;
+  }
+
+  .motto {
+    font-weight: 50;
+    color: black;
+    font-family: "Courier New", Times, serif;
+  }
+
+  .copyright {
+    color: #dc970b;
+    font-weight: 100;
+    font-size: 10px;
+  }
+
+  .mat-display-1 {
+    font-weight: 1000;
+    color: white;
+  }
+
+  .mat-subheading-1 {
+    color: white;
+    text-align: right;
+  }
+
+  .main-title {
+    margin-top: 100px;
+    display: inline-block;
+  }
+
+  .img-fluid {
+    max-width: 100%;
+    height: 400px;
+    margin-left: 75px;
+    margin-top: -165px;
+  }
+
+  img {
+    vertical-align: middle;
+    border-style: none;
+    display: none;
+  }
+
+  .home-pic {
+    display: inline-block;
+  }
+
+  .mat-raised-button {
+    width: 250px;
+    height: 50px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
