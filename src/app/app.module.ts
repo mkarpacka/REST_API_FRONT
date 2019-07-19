@@ -35,7 +35,8 @@ import localePl from "@angular/common/locales/pl";
 import { CourseDialogComponentComponent } from "./components/course-dialog-component/course-dialog-component.component";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
-import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { LandingPageComponent } from "./components/landing-page/landing-page.component";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 registerLocaleData(localePl);
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ registerLocaleData(localePl);
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTabsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   providers: [
     AccountService,

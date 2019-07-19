@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { AccountService } from "src/app/services/account.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Account } from "src/app/models/account";
 import { FormsModule } from "@angular/forms";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-edit-account-details",
@@ -16,7 +17,9 @@ export class EditAccountDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -27,8 +30,9 @@ export class EditAccountDetailsComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get("id");
     if (this.newOwner != null) {
       this.account.owner = this.newOwner;
-      console.log(id);
       this.accountService.updateAccount(id, this.account);
+      this.router.navigateByUrl("/account/" + this.account.number);
+      this.toastr.success("Account details changed");
     }
   }
 

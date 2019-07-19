@@ -88,13 +88,13 @@ export class AccountService {
       .subscribe();
   }
 
-  public deletAccount(accountNumber: number) {
+  public deletAccount(accountNumber: string) {
     this.prepareHeader();
     const completePath = this.path + "/accounts/delete/" + accountNumber;
     return this.http
       .delete<Account>(completePath, {
         headers: this.headersObject
       })
-      .subscribe();
+      .subscribe(a => a);
   }
 }

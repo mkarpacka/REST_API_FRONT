@@ -5,6 +5,7 @@ import { AccountService } from "src/app/services/account.service";
 import { MakeTransferService } from "src/app/services/make-transfer.service";
 import { Transfer } from "src/app/models/transfer";
 import { MatTableDataSource } from "@angular/material/table";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-account-details",
@@ -35,7 +36,8 @@ export class AccountDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private accountService: AccountService,
     private transferService: MakeTransferService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -101,9 +103,9 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   deleteAccount() {
-    const number = +this.route.snapshot.paramMap.get("id");
+    const number = this.route.snapshot.paramMap.get("id");
     this.accountService.deletAccount(number);
-
+    this.toastr.error("Account deleted!");
     setTimeout(() => {
       this.router.navigate(["/accounts"]);
     }, 1000);
