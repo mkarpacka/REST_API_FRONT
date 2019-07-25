@@ -6,6 +6,7 @@ import { MakeTransferComponent } from "./components/make-transfer/make-transfer.
 import { AccountDetailsComponent } from "./components/account-details/account-details.component";
 import { EditAccountDetailsComponent } from "./components/edit-account-details/edit-account-details.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
+import { ExternalTransferComponent } from "./components/external-transfer/external-transfer.component";
 
 const routes: Routes = [
   { path: "accounts", component: AccountComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: "addaccount", component: AddAccountFormComponent },
   { path: "maketransfer", component: MakeTransferComponent },
   { path: "account/:id", component: AccountDetailsComponent },
-  { path: "account/edit/:id", component: EditAccountDetailsComponent }
+  { path: "account/edit/:id", component: EditAccountDetailsComponent },
+  { path: "external-transfer", component: ExternalTransferComponent }
 ];
 
 @NgModule({

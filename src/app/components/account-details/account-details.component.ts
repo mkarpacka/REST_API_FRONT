@@ -26,7 +26,7 @@ export class AccountDetailsComponent implements OnInit {
     "balance",
     "currency",
     "transferStartedDate",
-    "transferRecievedDate",
+    "transferReceivedDate",
     "status"
   ];
 

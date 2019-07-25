@@ -39,7 +39,7 @@ export class AddAccountFormComponent implements OnInit {
       ],
       money: ["", [Validators.required]],
       currency: ["", [Validators.required]],
-      owner: ["", [Validators.required]]
+      owner: ["", [Validators.required, Validators.minLength(3)]]
     });
   }
 
@@ -49,7 +49,7 @@ export class AddAccountFormComponent implements OnInit {
 
   onSubmit() {
     if (this.accountForm.invalid) {
-      this.toastrService.error("everything is broken", "Major Error", {
+      this.toastrService.error("Input is invalid", "Error", {
         timeOut: 3000
       });
       return;
@@ -66,8 +66,10 @@ export class AddAccountFormComponent implements OnInit {
 
     setTimeout(() => {
       this.router.navigate(["/accounts"]);
+      this.toastrService.success("Account added");
     }, 1000);
   }
+
   public findInvalidControls() {
     let validControlsCounter = 0;
     const controls = this.accountForm.controls;

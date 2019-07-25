@@ -1,0 +1,40 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="form-container">
+  <mat-card>
+    <form [formGroup]="transferForm">
+      <h2 class="mat-display-1">Make external transfer</h2>
+      <mat-form-field class="form-group">
+        <input
+          matInput
+          placeholder="External account"
+          class="form-control"
+          id="externalAccount"
+          formControlName="externalAccount"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-group">
+        <input
+          matInput
+          placeholder="To account"
+          class="form-control"
+          id="toAccount"
+          formControlName="toAccount"
+          [value]="toAccountTemplate"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-group">
+        <input
+          matInput
+          placeholder="Amount"
+          class="form-control"
+          id="amount"
+          formControlName="amount"
+        />
+      </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      Submit
+    </button>
+  </mat-card>
+</div>

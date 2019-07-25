@@ -27,6 +27,11 @@ export class MakeTransferService {
       "Authorization",
       "Basic " + btoa("user:password")
     );
+    this.headersObject.append("Access-Control-Allow-Origin", "*");
+    this.headersObject.append(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
   }
   constructor(
     private http: HttpClient,

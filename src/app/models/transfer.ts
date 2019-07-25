@@ -3,11 +3,11 @@ import { Transferstatus } from "./transferstatus.enum";
 
 export class Transfer {
   id: number;
-  firstAccountNumber: string;
-  secondAccountNumber: string;
+  firstAccount: Account;
+  secondAccount: Account;
   money: number;
   currency: Currency;
   transferStatus: Transferstatus;
   transferStartedDate: Date;
-  transferRecievedDate: Date;
+  transferReceivedDate: Date;
 }

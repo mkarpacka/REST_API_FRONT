@@ -29,8 +29,6 @@ export class AccountComponent implements OnInit {
     this.accountService.findAll().subscribe(data => {
       this.accounts = new MatTableDataSource(data);
     });
-
-    // this.startLoadingSpinner();
   }
 
   applyFilter(filterValue: string) {
@@ -42,10 +40,10 @@ export class AccountComponent implements OnInit {
     this.router.navigateByUrl("/alltransfers");
   }
 
-  // startLoadingSpinner() {
-  //   this.isVisible = true;
-  //   setTimeout(() => {
-  //     this.isVisible = false;
-  //   }, 2000);
-  // }
+  startLoadingSpinner() {
+    this.isVisible = true;
+    setTimeout(() => {
+      this.isVisible = false;
+    }, 2000);
+  }
 }

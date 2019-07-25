@@ -37,6 +37,8 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { ExternalTransferComponent } from "./components/external-transfer/external-transfer.component";
+import { ExternalTransferService } from "./services/external-transfer.service";
 registerLocaleData(localePl);
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ registerLocaleData(localePl);
     AccountDetailsComponent,
     EditAccountDetailsComponent,
     CourseDialogComponentComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ExternalTransferComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,8 @@ registerLocaleData(localePl);
   providers: [
     AccountService,
     MakeTransferService,
-    { provide: LOCALE_ID, useValue: "pl-PL" }
+    { provide: LOCALE_ID, useValue: "pl-PL" },
+    ExternalTransferService
   ],
   bootstrap: [AppComponent],
   entryComponents: [CourseDialogComponentComponent]

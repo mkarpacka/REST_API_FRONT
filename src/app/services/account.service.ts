@@ -66,19 +66,15 @@ export class AccountService {
   public saveAccount(account: Account) {
     this.prepareHeader();
     const completePath = this.path + "/accounts/add";
-    try {
-      return this.http
-        .post<Account>(completePath, account, {
-          headers: this.headersObject
-        })
-        .subscribe();
-    } catch (e) {
-      console.log("error", e);
-      throw e;
-    }
+
+    return this.http
+      .post<Account>(completePath, account, {
+        headers: this.headersObject
+      })
+      .subscribe();
   }
 
-  public updateAccount(accountNumber: number, account: Account) {
+  public updateAccount(accountNumber: string, account: Account) {
     this.prepareHeader();
 
     return this.http
